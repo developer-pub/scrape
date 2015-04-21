@@ -1,0 +1,6 @@
+== Scraping
+
+This project scrapes the website saving data to local database: development.sqlite3.
+
+It limits the number of categories and offers per category downloaded to 7 and 15 respectively.
+
