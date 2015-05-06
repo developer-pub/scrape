@@ -82,17 +82,17 @@ module Scrape
     end
 
     def save_to_db
-        ActiveRecord::Base.establish_connection :adapter => 'sqlite3', :database => 'development.sqlite3'
+      ActiveRecord::Base.establish_connection :adapter => 'sqlite3', :database => 'development.sqlite3'
 
-        clear_db
+      clear_db
 
-        @categories.each do |category|
-          category_db = Category.create! :name => category[:name]
+      @categories.each do |category|
+        category_db = Category.create! :name => category[:name]
 
-          category[:offers].each do |offer|
-            offer_db = Offer.create!({category: category_db, title: offer[:title], body: offer[:description]})
-          end
+        category[:offers].each do |offer|
+          offer_db = Offer.create!({category: category_db, title: offer[:title], body: offer[:description]})
         end
+      end
     end
 
     private
@@ -103,13 +103,13 @@ module Scrape
       end
 
       def clear_db
-          Offer.all.each do |el|
-            el.destroy
-          end
+        Offer.all.each do |el|
+          el.destroy
+        end
 
-          Category.all.each do |el|
-            el.destroy
-          end
+        Category.all.each do |el|
+          el.destroy
+        end
       end
   end
 end
